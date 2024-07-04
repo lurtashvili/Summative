@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/styles.css" />
+    <title>Hotels</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__logo">Hotels</div>
+      <ul class="nav__links">
+        <li class="link"><a href="{{ url_for('home') }}">Home</a></li>
+            <li class="link"><a href="{{ url_for('loginsignup') }}">Login/Register</a></li>
+      </ul>
+    </nav>
+    <header class="section__container header__container">
+      <div class="header__image__container">
+        <div class="header__content">
+          <h1>Enjoy Your Dream Vacation</h1>
+          <p>Book Hotels, Flights and stay packages at lowest price.</p>
+        </div>
+        <div class="booking__container">
+          <form>
+            <div class="form__group">
+              <div class="input__group">
+                <input type="text" />
+                <label>Location</label>
+              </div>
+              <p>Where are you going?</p>
+            </div>
+            <div class="form__group">
+              <div class="input__group">
+                <input type="text" />
+                <label>Check In</label>
+              </div>
+              <p>Add date</p>
+            </div>
+            <div class="form__group">
+              <div class="input__group">
+                <input type="text" />
+                <label>Check Out</label>
+              </div>
+              <p>Add date</p>
+            </div>
+            <div class="form__group">
+              <div class="input__group">
+                <input type="text" />
+                <label>Guests</label>
+              </div>
+              <p>Add guests</p>
+            </div>
+          </form>
+          <button class="btn"><i class="ri-search-line"></i></button>
+        </div>
+      </div>
+    </header>
+   
+    <section class="section__container popular__container">
+      <h2 class="section__header">Popular Hotels</h2>
+      <div class="popular__grid">
+        <div class="popular__card">
+          <img src="../static/assets/hotel-1.jpg" alt="popular hotel" />
+          <div class="popular__content">
+            <div class="popular__card__header">
+              <h4>The Plaza Hotel</h4>
+              <h4>$499</h4>
+            </div>
+            <p>New York City, USA</p>
+          </div>
+        </div>
+        <div class="popular__card">
+          <img src="/static/assets/hotel-2.jpg" alt="popular hotel" />
+          <div class="popular__content">
+            <div class="popular__card__header">
+              <h4>Ritz Paris</h4>
+              <h4>$549</h4>
+            </div>
+            <p>Paris, France</p>
+          </div>
+        </div>
+        <div class="popular__card">
+          <img src="/static/assets/hotel-3.jpg" alt="popular hotel" />
+          <div class="popular__content">
+            <div class="popular__card__header">
+              <h4>The Peninsula</h4>
+              <h4>$599</h4>
+            </div>
+            <p>Hong Kong</p>
+          </div>
+        </div>
+        <div class="popular__card">
+          <img src="/static/assets/hotel-4.jpg" alt="popular hotel" />
+          <div class="popular__content">
+            <div class="popular__card__header">
+              <h4>Atlantis The Palm</h4>
+              <h4>$449</h4>
+            </div>
+            <p>Dubai, United Arab Emirates</p>
+          </div>
+        </div>
+        <div class="popular__card">
+          <img src="/static/assets/hotel-5.jpg" alt="popular hotel" />
+          <div class="popular__content">
+            <div class="popular__card__header">
+              <h4>{{hotel_name}}</h4>
+              <h4>$649</h4>
+            </div>
+            <p>Tokyo, Japan</p>
+          </div>
+        </div>
+        <div class="popular__card">
+          <img src="/static/assets/hotel-6.jpg" alt="popular hotel" />
+          <div class="popular__content">
+            <div class="popular__card__header">
+              <h4>Marina Bay Sands</h4>
+              <h4>$549</h4>
+            </div>
+            <p>Singapore</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="footer">
+     
+      <div class="footer__bar" style="display: flex; justify-content: center; text-align: center;">
+        <br>
+        <br>
+        <br>
+        Copyright © 2024
+      </div>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>
+
+<script>
+  function searchHotels() {
+      const query = document.getElementById('searchInput').value;
+      fetch(`/search_hotels?query=${query}`)
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('hotelsList').innerHTML = data;
+          });
+  }
+</script>
